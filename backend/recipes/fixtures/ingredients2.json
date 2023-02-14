@@ -1,0 +1,10 @@
+[
+    {
+        "model": "recipes.Ingredient",
+        "pk": "1",
+        "fields": {
+            "name": "абрикосовое варенье", 
+            "measurement_unit": "г"
+        }
+    } 
+]
