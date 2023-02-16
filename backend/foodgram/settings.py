@@ -11,6 +11,7 @@ SECRET_KEY = os.getenv(
 )
 
 DEBUG = os.getenv('DEBUG', True)
+SQLITE3 = os.getenv('SQLITE3', False)
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default=['*'])
 
@@ -60,6 +61,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
+if SQLITE3:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 DATABASES = {
     'default': {
@@ -126,7 +134,6 @@ REST_FRAMEWORK = {
 
 DJOSER = {
     'SERIALIZERS': {
-        'user_create': 'api.serializers.CustomUserCreateSerializer',
         'user': 'api.serializers.CustomUserSerializer',
         'current_user': 'api.serializers.CustomUserSerializer',
     },
@@ -135,8 +142,14 @@ DJOSER = {
         'user_list': ('rest_framework.permissions.AllowAny', ),
     },
     'HIDE_USERS': False,
+    'LOGIN_FIELD': 'email',
 }
 
+
+EMAIL_MAX_LENGTH = 254
+TEXT_MAX_LENGTH = 150
+LOAD_DATA_START = 'Началась загрузка ингредиентов и тэгов в базу данных'
+LOAD_DATA_SUCCESS = 'Ингредиенты и тэги добавлены в базу данных'
 SLUG_ERROR = (
     'Можно использовать цифры и латинские буквы. Не более 200 символов'
 )
@@ -145,10 +158,11 @@ WRONG_SYMBOLS = 'Недопустимые символы: {}'
 WRONG_COOKING_TIME = 'Время приготовления должно быть больше 0!'
 WRONG_UNIQUE_TAGS = 'Тэги должны быть уникальными!'
 WRONG_UNIQUE_INGREDIENTS = 'Ингредиенты должны быть уникальными!'
+WRONG_UNIQUE_RECEPIE = 'Рецепт уже находится в избранном.'
 WRONG_INGREDIENT_CHOOSE = 'Нужно выбрать хотя бы один ингредиент!'
 WRONG_TAG_CHOOSE = 'Нужно выбрать хотя бы один тэг!'
 WRONG_INGREDIENT_AMOUNT = 'Количество ингредиента должно быть больше нуля!'
+WRONG_RECIPE_TO_SHOPPINGCART = 'Рецепт уже добавлен в список покупок.'
+WRONG_FOLLOW = 'Подписка на автора уже осуществлена.'
 USER_NOT_EXIST = 'Такого пользователя не существует.'
-SUBSCRIBE_NOT_EXIST = 'Отсутствует подписка на данного пользователя.'
-DELETE_FOLLOWING = 'Осуществлена отписка от пользователя {}.'
 EMPTY_VALUE = '-пусто-'
