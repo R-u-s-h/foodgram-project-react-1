@@ -8,7 +8,6 @@ from reportlab.pdfgen import canvas
 from recipes.models import IngredientRecipe
 
 
-@staticmethod
 def canvas_method(dictionary):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename = "cart.pdf"'
@@ -34,7 +33,7 @@ def canvas_method(dictionary):
             begin_position_x,
             begin_position_y,
             f'{number}.  {item["ingredient__name"]} - '
-            f'{item["ingredient_total"]}'
+            f'{item["ingredient_amount"]}'
             f' {item["ingredient__measurement_unit"]}'
         )
         begin_position_y -= 30
@@ -43,15 +42,15 @@ def canvas_method(dictionary):
     return response
 
 
-def download_shopping_cart(request):
+def download_cart(request):
     result = IngredientRecipe.objects.filter(
-        recipe__cart__user=request.user
-    ).values(
-        'ingredient__name',
-        'ingredient__measurement_unit'
-    ).order_by(
-        'ingredient__name'
-    ).annotate(
-        ingredient_total=Sum('amount')
-    )
+            recipe__shopping_cart__user=request.user
+        ).values(
+            'ingredient__name',
+            'ingredient__measurement_unit'
+        ).order_by(
+            'ingredient__name'
+        ).annotate(
+            ingredient_amount=Sum('amount')
+        )
     return canvas_method(result)

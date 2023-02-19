@@ -8,20 +8,20 @@ from users.models import User
 class Tag(models.Model):
     name = models.TextField(
         'Название',
-        max_length=200,
+        max_length=settings.NAME_MAX_LENGTH,
         blank=True,
         null=True
     )
     color = models.TextField(
         'Цвет в HEX',
-        max_length=7,
+        max_length=settings.COLOR_MAX_LENGTH,
         blank=True,
         null=True,
         default='#ffffff'
     )
     slug = models.TextField(
         'Уникальный идентификатор',
-        max_length=200,
+        max_length=settings.SLUG_MAX_LENGTH,
         validators=[
             RegexValidator(
                 regex=r'^[-a-zA-Z0-9_]+$',
@@ -43,13 +43,13 @@ class Tag(models.Model):
 class Ingredient(models.Model):
     name = models.TextField(
         'Название',
-        max_length=200,
+        max_length=settings.NAME_MAX_LENGTH,
         blank=True,
         null=True
     )
     measurement_unit = models.TextField(
         'Единица измерения',
-        max_length=200,
+        max_length=settings.MEASUREMENT_UNIT_MAX_LENGTH,
         blank=True,
         null=True
     )
@@ -89,7 +89,7 @@ class Recipe(models.Model):
     )
     name = models.TextField(
         'Название',
-        max_length=200
+        max_length=settings.NAME_MAX_LENGTH,
     )
     text = models.TextField(
         'Описание'

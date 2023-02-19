@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'rest_framework.authtoken',
     'djoser',
     'django_filters',
@@ -34,12 +35,16 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
 
 ROOT_URLCONF = 'foodgram.urls'
 
@@ -68,20 +73,20 @@ if SQLITE3:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv(
-            'DB_ENGINE',
-            default='django.db.backends.postgresql'
-        ),
-        'NAME': os.getenv('DB_NAME', default='postgres'),
-        'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-        'HOST': os.getenv('DB_HOST', default='localhost'),
-        'PORT': os.getenv('DB_PORT', default='5432')
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv(
+                'DB_ENGINE',
+                default='django.db.backends.postgresql'
+            ),
+            'NAME': os.getenv('DB_NAME', default='postgres'),
+            'USER': os.getenv('POSTGRES_USER', default='postgres'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
+            'HOST': os.getenv('DB_HOST', default='localhost'),
+            'PORT': os.getenv('DB_PORT', default='5432')
+        }
     }
-}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -147,7 +152,11 @@ DJOSER = {
 
 
 EMAIL_MAX_LENGTH = 254
+NAME_MAX_LENGTH = 200
+SLUG_MAX_LENGTH = 200
+MEASUREMENT_UNIT_MAX_LENGTH = 200
 TEXT_MAX_LENGTH = 150
+COLOR_MAX_LENGTH = 7
 LOAD_DATA_START = 'Началась загрузка ингредиентов и тэгов в базу данных'
 LOAD_DATA_SUCCESS = 'Ингредиенты и тэги добавлены в базу данных'
 SLUG_ERROR = (

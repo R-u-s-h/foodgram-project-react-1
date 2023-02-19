@@ -10,11 +10,13 @@ from users.models import User, Follow
 class RecipeIngredientsInline(admin.TabularInline):
     model = Recipe.ingredients.through
     extra = 1
+    min_num = 1
 
 
 class TagInline(admin.TabularInline):
     model = Recipe.tags.through
     extra = 1
+    min_num = 1
 
 
 @admin.register(User)
