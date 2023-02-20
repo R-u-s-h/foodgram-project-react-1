@@ -7,17 +7,16 @@ from rest_framework.permissions import (AllowAny, IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
-from users.models import Follow, User
 
-from recipes.models import (Favorite, Ingredient, Recipe,
-                            ShoppingCart, Tag)
 from .filters import IngredientSearchFilter, RecipeFilter
 from .serializers import (CustomUserSerializer, FavoriteSerializer,
                           FollowListSerializer, FollowSerializer,
-                          TagSerializer, IngredientSerializer,
-                          RecipeListSerializer,
-                          RecipeSerializer, ShoppingCartSerializer)
+                          IngredientSerializer, RecipeListSerializer,
+                          RecipeSerializer, ShoppingCartSerializer,
+                          TagSerializer)
 from .utils import download_cart
+from recipes.models import Favorite, Ingredient, Recipe, ShoppingCart, Tag
+from users.models import Follow, User
 
 
 class CustomUserViewSet(UserViewSet):

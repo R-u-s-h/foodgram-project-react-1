@@ -1,22 +1,12 @@
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from djoser.serializers import UserCreateSerializer
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
+from recipes.models import (Favorite, Ingredient, IngredientRecipe, Recipe,
+                            ShoppingCart, Tag)
 from users.models import Follow, User
-from recipes.models import (Ingredient, Tag, Recipe,
-                            Favorite, ShoppingCart, IngredientRecipe)
-
-
-class CustomUserCreateSerializer(UserCreateSerializer):
-    class Meta:
-        model = User
-        fields = ('email', 'username', 'first_name',
-                  'last_name', 'password')
-        write_only_fields = ('password',)
-        read_only_fields = ('id',)
 
 
 class CustomUserSerializer(serializers.ModelSerializer):

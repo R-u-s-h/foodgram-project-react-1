@@ -13,12 +13,6 @@ class RecipeIngredientsInline(admin.TabularInline):
     min_num = 1
 
 
-class TagInline(admin.TabularInline):
-    model = Recipe.tags.through
-    extra = 1
-    min_num = 1
-
-
 @admin.register(User)
 class UserClass(admin.ModelAdmin):
     list_display = (
@@ -95,7 +89,7 @@ class TagClass(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeClass(admin.ModelAdmin):
-    inlines = (RecipeIngredientsInline, TagInline)
+    inlines = (RecipeIngredientsInline, )
     list_display = (
         'name',
         'text',
