@@ -1,10 +1,11 @@
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
-from .models import (Favorite, Ingredient, IngredientRecipe, Recipe,
-                     ShoppingCart, Tag)
-from django.conf import settings
-from users.models import User, Follow
+from recipes.models import (
+    Favorite, Ingredient, IngredientRecipe, Recipe, ShoppingCart, Tag
+)
+from users.models import Follow, User
 
 
 class RecipeIngredientsInline(admin.TabularInline):

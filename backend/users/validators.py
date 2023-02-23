@@ -1,7 +1,8 @@
 import re
+
 from rest_framework.exceptions import ValidationError
 
-from foodgram.settings import WRONG_USERNAME, WRONG_SYMBOLS
+from foodgram.settings import WRONG_SYMBOLS, WRONG_USERNAME
 
 
 def username_validator(value):

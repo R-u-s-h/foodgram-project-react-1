@@ -44,13 +44,13 @@ def canvas_method(dictionary):
 
 def download_cart(request):
     result = IngredientRecipe.objects.filter(
-            recipe__shopping_cart__user=request.user
-        ).values(
-            'ingredient__name',
-            'ingredient__measurement_unit'
-        ).order_by(
-            'ingredient__name'
-        ).annotate(
-            ingredient_amount=Sum('amount')
-        )
+        recipe__shopping_cart__user=request.user
+    ).values(
+        'ingredient__name',
+        'ingredient__measurement_unit'
+    ).order_by(
+        'ingredient__name'
+    ).annotate(
+        ingredient_amount=Sum('amount')
+    )
     return canvas_method(result)

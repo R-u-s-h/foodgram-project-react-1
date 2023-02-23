@@ -4,8 +4,9 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
-from recipes.models import (Favorite, Ingredient, IngredientRecipe, Recipe,
-                            ShoppingCart, Tag)
+from recipes.models import (
+    Favorite, Ingredient, IngredientRecipe, Recipe, ShoppingCart, Tag
+)
 from users.models import Follow, User
 
 
@@ -251,8 +252,8 @@ class RecipeSerializer(serializers.ModelSerializer):
         IngredientRecipe.objects.bulk_create(
             [IngredientRecipe(recipe=recipe,
              ingredient=get_object_or_404(
-                Ingredient, pk=ingredient['id']),
-             amount=ingredient['amount'])
+                 Ingredient, pk=ingredient['id']
+             ), amount=ingredient['amount'])
              for ingredient in ingredients])
 
     def create(self, validated_data):

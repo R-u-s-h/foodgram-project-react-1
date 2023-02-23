@@ -3,18 +3,19 @@ from django_filters.rest_framework import DjangoFilterBackend
 from djoser.views import UserViewSet
 from rest_framework import status
 from rest_framework.decorators import action, permission_classes
-from rest_framework.permissions import (AllowAny, IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
+from rest_framework.permissions import (
+    AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+)
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
-from .filters import IngredientSearchFilter, RecipeFilter
-from .serializers import (CustomUserSerializer, FavoriteSerializer,
-                          FollowListSerializer, FollowSerializer,
-                          IngredientSerializer, RecipeListSerializer,
-                          RecipeSerializer, ShoppingCartSerializer,
-                          TagSerializer)
-from .utils import download_cart
+from api.filters import IngredientSearchFilter, RecipeFilter
+from api.serializers import (
+    CustomUserSerializer, FavoriteSerializer, FollowListSerializer,
+    FollowSerializer, IngredientSerializer, RecipeListSerializer,
+    RecipeSerializer, ShoppingCartSerializer, TagSerializer
+)
+from api.utils import download_cart
 from recipes.models import Favorite, Ingredient, Recipe, ShoppingCart, Tag
 from users.models import Follow, User
 
