@@ -47,7 +47,7 @@ class UserClass(admin.ModelAdmin):
         return obj.following.count()
 
     get_recipes.short_description = 'Рецепты'
-    get_followers..short_description = 'Подписчики'
+    get_followers.short_description = 'Подписчики'
 
 
 @admin.register(Ingredient)
