@@ -55,7 +55,7 @@ docker-compose exec backend python manage.py collectstatic --no-input
 Заполнить базу данных тестовыми данными 
 
 ```
-docker-compose exec web python manage.py loaddata
+docker-compose exec backend python manage.py loaddata
 ```
 
 ### Разработчики проекта:
