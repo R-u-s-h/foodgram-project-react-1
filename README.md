@@ -10,12 +10,12 @@
 
 Python 3.7  
 Django 2.2  
-Django Rest Framework
-Djoser
-Reportlab
-NGINX
-Gunicorn
-Docker
+Django Rest Framework  
+Djoser  
+Reportlab  
+NGINX  
+Gunicorn  
+Docker  
 
 
 ### Как запустить проект:
@@ -48,7 +48,7 @@ docker-compose up -d --build
 
 ```
 docker-compose exec web python manage.py migrate
-winpty docker-compose exec web python manage.py createsuperuser
+docker-compose exec web python manage.py createsuperuser
 docker-compose exec web python manage.py collectstatic --no-input 
 ```
 
