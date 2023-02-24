@@ -109,13 +109,14 @@ class RecipeClass(admin.ModelAdmin):
     search_fields = ('name',)
     empty_value_display = settings.EMPTY_VALUE
 
-    @admin.display(description='Избранное')
     def get_favorite(self, obj):
         return obj.favorite.count()
 
-    @admin.display(description='Ингредиенты')
     def get_ingredients(self, obj):
         return ', '.join(obj.ingredients.all().values_list('name', flat=True))
+
+    get_favorite.short_description = 'Избранное'
+    get_ingredients.short_description = 'Ингредиенты'
 
 
 @admin.register(IngredientRecipe)
