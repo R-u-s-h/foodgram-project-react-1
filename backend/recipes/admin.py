@@ -40,13 +40,14 @@ class UserClass(admin.ModelAdmin):
     )
     empty_value_display = settings.EMPTY_VALUE
 
-    @admin.display(description='Рецепты')
     def get_recipes(self, obj):
         return obj.recipes.count()
 
-    @admin.display(description='Подписчики')
     def get_followers(self, obj):
         return obj.following.count()
+
+    get_recipes.short_description = 'Рецепты'
+    get_followers..short_description = 'Подписчики'
 
 
 @admin.register(Ingredient)
