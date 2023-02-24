@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:13.0-alpine
     volumes:
-      - /var/lib/postgresql/data/
+      - db_value:/var/lib/postgresql/data/
     env_file:
       - ./.env
 
@@ -56,6 +56,6 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 volumes:
-  result_build:
+  db_value:
   static_value:
   media_value:
