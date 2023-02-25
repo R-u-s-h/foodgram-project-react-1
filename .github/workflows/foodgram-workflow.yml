@@ -6,6 +6,7 @@ jobs:
 
   tests:
     runs-on: ubuntu-latest
+
     steps:
     - name: Clone repo
       uses: actions/checkout@v2
@@ -45,7 +46,7 @@ jobs:
         with:
           push: true
           tags: magicbuka/foodgram_backend:latest
-          context: backend/
+          context: backend
           file: backend/Dockerfile
 
       - name: Push to Docker Hub (frontend)
@@ -53,7 +54,7 @@ jobs:
         with:
           push: true
           tags: magicbuka/foodgram_frontend:latest
-          context: frontend/
+          context: frontend
           file: frontend/Dockerfile
 
   deploy:
