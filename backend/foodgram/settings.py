@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv(
     default='dyjvlw%g@)ized$cn=r1n-k2^+%r!3-kqy)9*)#w$1yn-2-i!1'
 )
 
-DEBUG = os.getenv('DEBUG', True)
+DEBUG = os.getenv('DEBUG', False)
 SQLITE3 = os.getenv('SQLITE3', False)
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default=['*'])
