@@ -62,7 +62,6 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd foodgram
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
             sudo docker-compose stop
             sudo docker-compose rmi ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
             touch .env
