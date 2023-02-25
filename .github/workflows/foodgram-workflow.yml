@@ -64,7 +64,6 @@ jobs:
           script: |
             cd foodgram
             sudo docker image prune -f
-            sudo docker image pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
             sudo rm .env
             sudo touch .env
             sudo chmod 777 .env
