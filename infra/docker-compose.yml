@@ -20,13 +20,11 @@ services:
       - ./.env 
 
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: magicbuka/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
-      - backend
+      - db
 
   nginx:
     image: nginx:1.21.3-alpine
@@ -39,6 +37,7 @@ services:
       - static_value:/var/html/backend_static/
       - media_value:/var/html/backend_media/
     depends_on:
+      - backend
       - frontend
 
 volumes:
